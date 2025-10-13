@@ -88,7 +88,7 @@ if __name__ == "__main__":
     df[numeric_features] = scaler.fit_transform(df[numeric_features])
 
     # ----------------------------
-    # Dataset
+    # Dataset 
     # ----------------------------
     class PriceDataset(Dataset):
         def __init__(self, df, numeric_cols):
@@ -253,8 +253,8 @@ if __name__ == "__main__":
             preds.extend(np.expm1(outputs.cpu().numpy()))
 
     submission = pd.DataFrame({
-        "sample_id": test_df["sample_id"] if "sample_id" in test_df.columns else np.arange(len(test_df)),
-        "price": preds
+        "sample_id": test_df["sample_id"],
+        'price': preds
     })
     submission.to_csv("submission.csv", index=False)
     print("✅ Predictions saved to submission.csv")
