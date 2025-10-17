@@ -1,106 +1,246 @@
-# ML Challenge 2025 Problem Statement
+# 🏆 ML Challenge 2025: Smart Product Pricing Solution
 
-## Smart Product Pricing Challenge
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-In e-commerce, determining the optimal price point for products is crucial for marketplace success and customer satisfaction. Your challenge is to develop an ML solution that analyzes product details and predict the price of the product. The relationship between product attributes and pricing is complex - with factors like brand, specifications, product quantity directly influence pricing. Your task is to build a model that can analyze these product details holistically and suggest an optimal price.
+## 🎯 Challenge Overview
 
-### Data Description:
+**Team:** Batch_Normalisation  
+**Members:** Amulya Jain, Himanshu Pokhriyal, Narind Verma, Naman Chanana  
+**Submission:** Advanced BiLSTM + ResNet Multimodal Solution
 
-The dataset consists of the following columns:
+### Problem Statement
 
-1. **sample_id:** A unique identifier for the input sample
-2. **catalog_content:** Text field containing title, product description and an Item Pack Quantity(IPQ) concatenated.
-3. **image_link:** Public URL where the product image is available for download. 
-   Example link - https://m.media-amazon.com/images/I/71XfHPR36-L.jpg
-   To download images use `download_images` function from `src/utils.py`. See sample code in `src/test.ipynb`.
-4. **price:** Price of the product (Target variable - only available in training data)
+Develop an ML solution that analyzes product catalog content and images to predict optimal product pricing in e-commerce. The challenge involves complex relationships between textual descriptions, visual features, and pricing dynamics.
 
-### Dataset Details:
+### 🏅 Our Approach
 
-- **Training Dataset:** 75k products with complete product details and prices
-- **Test Set:** 75k products for final evaluation
+- **Hybrid Architecture**: BiLSTM + Attention for text + ResNet embeddings for images
+- **Advanced Features**: SMAPE-optimized loss, log-transformed targets, robust scaling
+- **Performance**: Achieved strong validation SMAPE within 5 epochs
+- **Innovation**: Multimodal fusion with attention-driven semantic understanding
 
-### Output Format:
+### 📊 Dataset Description
 
-The output file should be a CSV with 2 columns:
+| Column            | Description                                      | Type   |
+| ----------------- | ------------------------------------------------ | ------ |
+| `sample_id`       | Unique identifier for input sample               | String |
+| `catalog_content` | Product title, description, and IPQ concatenated | Text   |
+| `image_link`      | Public URL for product image download            | URL    |
+| `price`           | Product price (target variable - training only)  | Float  |
 
-1. **sample_id:** The unique identifier of the data sample. Note the ID should match the test record sample_id.
-2. **price:** A float value representing the predicted price of the product.
+## 🏗️ Project Structure
 
-Note: Make sure to output a prediction for all sample IDs. If you have less/more number of output samples in the output file as compared to test.csv, your output won't be evaluated.
-
-### File Descriptions:
-
-*Source files*
-
-1. **src/utils.py:** Contains helper functions for downloading images from the image_link. You may need to retry a few times to download all images due to possible throttling issues.
-2. **sample_code.py:** Sample dummy code that can generate an output file in the given format. Usage of this file is optional.
-
-*Dataset files*
-
-1. **dataset/train.csv:** Training file with labels (`price`).
-2. **dataset/test.csv:** Test file without output labels (`price`). Generate predictions using your model/solution on this file's data and format the output file to match sample_test_out.csv
-3. **dataset/sample_test.csv:** Sample test input file.
-4. **dataset/sample_test_out.csv:** Sample outputs for sample_test.csv. The output for test.csv must be formatted in the exact same way. Note: The predictions in the file might not be correct
-
-### Constraints:
-
-1. You will be provided with a sample output file. Format your output to match the sample output file exactly. 
-
-2. Predicted prices must be positive float values.
-
-3. Final model should be a MIT/Apache 2.0 License model and up to 8 Billion parameters.
-
-### Evaluation Criteria:
-
-Submissions are evaluated using **Symmetric Mean Absolute Percentage Error (SMAPE)**: A statistical measure that expresses the relative difference between predicted and actual values as a percentage, while treating positive and negative errors equally.
-
-**Formula:**
 ```
-SMAPE = (1/n) * Σ |predicted_price - actual_price| / ((|actual_price| + |predicted_price|)/2)
+Amazon-ML-Challenge-2025/
+├── 📁 dataset/                    # Dataset files
+│   ├── train.csv                  # Training data (75k samples)
+│   ├── test.csv                   # Test data (75k samples)
+│   ├── sample_test.csv            # Sample test input
+│   └── sample_test_out.csv        # Sample output format
+├── 📁 scripts/                    # Core scripts
+│   ├── generate_embeddings.py     # ResNet image embeddings generator
+│   ├── download_images.py         # Image downloader
+│   └── image_downloader.py        # Advanced image downloader
+├── 📁 utils/                      # Utility modules
+│   ├── data_utils.py             # Data processing utilities
+│   ├── image_utils.py            # Image processing utilities
+│   └── __init__.py               # Package initialization
+├── 📁 notebooks/                  # Analysis notebooks
+│   └── eda.ipynb                 # Exploratory Data Analysis
+├── 📁 architecture/               # Architecture diagrams
+│   └── architecture_overview.png  # Model architecture diagram
+├── 📁 embeddings/                 # Generated embeddings
+├── 📁 images/                     # Downloaded images
+│   ├── train/                    # Training images
+│   └── test/                     # Test images
+├── model_training.py              # Main training script
+├── best_model.pt                  # Trained model weights
+├── submission.csv                 # Final predictions
+├── Documentation.md               # Technical documentation
+└── README.md                      # This file
 ```
 
-**Example:** If actual price = $100 and predicted price = $120  
-SMAPE = |100-120| / ((|100| + |120|)/2) * 100% = 18.18%
+## 🚀 Quick Start
 
-**Note:** SMAPE is bounded between 0% and 200%. Lower values indicate better performance.
+### Prerequisites
 
-### Leaderboard Information:
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-- **Public Leaderboard:** During the challenge, rankings will be based on 25K samples from the test set to provide real-time feedback on your model's performance.
-- **Final Rankings:** The final decision will be based on performance on the complete 75K test set along with provided documentation of the proposed approach by the teams.
+# For image processing (optional but recommended)
+pip install torch torchvision pillow
+```
 
-### Submission Requirements:
+### 1. Download Images (Optional)
 
-1. Upload a `test_out.csv` file in the Portal with the exact same formatting as `sample_test_out.csv`
+```bash
+# Download sample images for testing
+python scripts/download_images.py
 
-2. All participating teams must also provide a 1-page document describing:
-   - Methodology used
-   - Model architecture/algorithms selected
-   - Feature engineering techniques applied
-   - Any other relevant information about the approach
-   Note: A sample template for this documentation is provided in Documentation_template.md
+# Or generate embeddings directly
+python scripts/generate_embeddings.py
+```
 
-### **Academic Integrity and Fair Play:**
+### 2. Train Model
 
-**⚠️ STRICTLY PROHIBITED: External Price Lookup**
+```bash
+# Train the BiLSTM model
+python model_training.py
 
-Participants are **STRICTLY NOT ALLOWED** to obtain prices from the internet, external databases, or any sources outside the provided dataset. This includes but is not limited to:
-- Web scraping product prices from e-commerce websites
-- Using APIs to fetch current market prices
-- Manual price lookup from online sources
-- Using any external pricing databases or services
+# Model will be saved as best_model.pt
+```
 
-**Enforcement:**
-- All submitted approaches, methodologies, and code pipelines will be thoroughly reviewed and verified
-- Any evidence of external price lookup or data augmentation from internet sources will result in **immediate disqualification**
+### 3. Generate Predictions
 
-**Fair Play:** This challenge is designed to test your machine learning and data science skills using only the provided training data. External price lookup defeats the purpose of the challenge.
+```bash
+# Run inference on test set
+python model_training.py --inference
 
+# Output will be saved as submission.csv
+```
 
-### Tips for Success:
+## 🔬 Technical Approach
 
-- Consider both textual features (catalog_content) and visual features (product images)
-- Explore feature engineering techniques for text and image data
-- Consider ensemble methods combining different model types
-- Pay attention to outliers and data preprocessing
+### Model Architecture
+
+**Hybrid Multimodal Architecture:**
+
+- **Text Branch**: BiLSTM + Attention mechanism for catalog content
+- **Image Branch**: ResNet embeddings for visual features
+- **Fusion Layer**: Concatenated features → Dense layers → Price prediction
+
+### Key Features
+
+- **SMAPE-Optimized Loss**: Direct optimization of competition metric
+- **Log-Transformed Targets**: Handles skewed price distribution
+- **Robust Scaling**: Resistant to outliers and anomalies
+- **Attention Mechanism**: Focuses on price-relevant keywords
+- **Mixed Precision**: Fast GPU training with automatic optimization
+
+### Performance
+
+- **Validation SMAPE**: Competitive performance within 5 epochs
+- **Convergence**: Early stopping with gradient clipping
+- **Generalization**: Strong regularization prevents overfitting
+
+## 📊 Dataset Information
+
+| Metric               | Value                                            |
+| -------------------- | ------------------------------------------------ |
+| **Training Samples** | 75,000                                           |
+| **Test Samples**     | 75,000                                           |
+| **Features**         | Catalog content + Product images                 |
+| **Target**           | Product price (USD)                              |
+| **Evaluation**       | SMAPE (Symmetric Mean Absolute Percentage Error) |
+
+### Output Format
+
+CSV file with columns:
+
+- `sample_id`: Unique identifier matching test records
+- `price`: Predicted price (positive float values)
+
+## 🛠️ Advanced Usage
+
+### Image Embeddings
+
+```bash
+# Generate ResNet embeddings for all images
+python scripts/generate_embeddings.py
+
+# Embeddings saved to dataset/embeddings_columns_*.csv
+```
+
+### Custom Training
+
+```python
+from model_training import Config, train_model
+
+# Modify configuration
+Config.EPOCHS = 100
+Config.BATCH_SIZE = 256
+Config.LR = 1e-3
+
+# Train with custom settings
+train_model()
+```
+
+### Model Analysis
+
+```python
+# Load trained model
+import torch
+model = torch.load('best_model.pt')
+
+# Analyze attention weights
+attention_weights = model.get_attention_weights(text_input)
+```
+
+## 📈 Results & Performance
+
+### Validation Metrics
+
+- **Best SMAPE**: Competitive performance
+- **Convergence**: 4-5 epochs with early stopping
+- **Stability**: Consistent results across multiple runs
+
+### Model Insights
+
+- **Attention Focus**: Keywords like "size", "quantity", "premium" receive high attention
+- **Image Importance**: Visual features contribute significantly to pricing
+- **Feature Engineering**: Log transformation crucial for stable learning
+
+## 🔧 Configuration
+
+Key parameters in `model_training.py`:
+
+```python
+class Config:
+    MAX_LEN = 150          # Text sequence length
+    VOCAB_SIZE = 12000     # Vocabulary size
+    EMBED_DIM = 256        # Embedding dimension
+    LSTM_HIDDEN = 128      # LSTM hidden size
+    BATCH_SIZE = 128       # Training batch size
+    EPOCHS = 50            # Maximum epochs
+    LR = 3e-4             # Learning rate
+```
+
+## 📝 Submission Guidelines
+
+1. **Format**: CSV with `sample_id` and `price` columns
+2. **Completeness**: All test samples must have predictions
+3. **Values**: Positive float prices only
+4. **Documentation**: Technical approach documentation required
+
+## 🚫 Academic Integrity
+
+**STRICTLY PROHIBITED:**
+
+- External price lookups from e-commerce sites
+- Web scraping for current market prices
+- Use of external pricing databases
+- Any data sources beyond provided dataset
+
+## 🤝 Contributing
+
+See `docs/CONTRIBUTING.md` for contribution guidelines.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+## 👥 Team
+
+**Batch_Normalisation**
+
+- Amulya Jain
+- Himanshu Pokhriyal
+- Narind Verma
+- Naman Chanana
+
+---
+
+**🏆 Ready to predict prices like a pro? Let's build the future of e-commerce pricing!** 🚀
