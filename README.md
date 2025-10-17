@@ -34,32 +34,38 @@ Develop an ML solution that analyzes product catalog content and images to predi
 
 ```
 Amazon-ML-Challenge-2025/
-├── 📁 dataset/                    # Dataset files
-│   ├── train.csv                  # Training data (75k samples)
-│   ├── test.csv                   # Test data (75k samples)
-│   ├── sample_test.csv            # Sample test input
-│   └── sample_test_out.csv        # Sample output format
-├── 📁 scripts/                    # Core scripts
-│   ├── generate_embeddings.py     # ResNet image embeddings generator
-│   ├── download_images.py         # Image downloader
-│   └── image_downloader.py        # Advanced image downloader
-├── 📁 utils/                      # Utility modules
-│   ├── data_utils.py             # Data processing utilities
-│   ├── image_utils.py            # Image processing utilities
-│   └── __init__.py               # Package initialization
-├── 📁 notebooks/                  # Analysis notebooks
-│   └── eda.ipynb                 # Exploratory Data Analysis
-├── 📁 architecture/               # Architecture diagrams
-│   └── architecture_overview.png  # Model architecture diagram
-├── 📁 embeddings/                 # Generated embeddings
-├── 📁 images/                     # Downloaded images
-│   ├── train/                    # Training images
-│   └── test/                     # Test images
-├── model_training.py              # Main training script
-├── best_model.pt                  # Trained model weights
-├── submission.csv                 # Final predictions
-├── Documentation.md               # Technical documentation
-└── README.md                      # This file
+├── 📁 dataset/                      # Dataset files
+│   ├── train.csv                     # Training data (75k samples)
+│   ├── test.csv                      # Test data (75k samples)
+│   ├── sample_test.csv               # Sample test input
+│   └── sample_test_out.csv           # Sample output format
+├── 📁 scripts/                       # Core scripts
+│   ├── generate_embeddings.py        # ResNet image embeddings generator
+│   ├── download_images.py            # Image downloader
+│   └── image_downloader.py           # Advanced image downloader
+├── 📁 utils/                         # Utility modules
+│   ├── image_utils.py                # Image processing utilities
+│   └── __init__.py                   # Package initialization
+├── 📁 notebooks/                     # Analysis notebooks
+│   └── eda.ipynb                     # Exploratory Data Analysis
+├── 📁 architecture/                  # Architecture diagrams
+│   └── architecture_overview.png     # Model architecture diagram
+├── 📁 images/                       # Downloaded images
+│   ├── train/                        # Training images
+│   └── test/                         # Test images
+├── 📁 docs/                         # All Documentations
+│   ├── Documentation.md              # Technical documentation of complete competition
+|   ├── generate_embeddings_guide.md  # Embeddings guide
+|   ├── image_downloader_guide.md     # Image downloading guide
+│   └── CONTRIBUTING.MD/              # For Contribution
+├── model_training.py                 # Main training script
+├── best_model.pt                     # Trained model weights
+├── submission.csv                    # Final predictions
+├── requirements.txt                  # Requirements and Dependency file
+├── .gitignore                        # Files which are not pushed
+├── .gitattributes                    # For gitlfs
+├── LICENSE                           # LICENSE FILE
+└── README.md                         # This file
 ```
 
 ## 🚀 Quick Start
