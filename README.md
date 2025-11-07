@@ -9,6 +9,7 @@
 **Team:** Batch_Normalisation  
 **Members:** Amulya Jain, Himanshu Pokhriyal, Narind Verma, Naman Chanana  
 **Submission:** Advanced BiLSTM + ResNet Multimodal Solution
+**Achieved:** Rank 1565 out 90,000 Teams participated
 
 ### Problem Statement
 
