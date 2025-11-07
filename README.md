@@ -8,8 +8,8 @@
 
 **Team:** Batch_Normalisation  
 **Members:** Amulya Jain, Himanshu Pokhriyal, Narind Verma, Naman Chanana  
-**Submission:** Advanced BiLSTM + ResNet Multimodal Solution
-**Achieved:** Rank 1565 out 90,000 Teams participated
+**Submission:** Advanced BiLSTM + ResNet Multimodal Solution \
+**Achieved:** Rank **1565 out of 90,000 Teams** participated
 
 ### Problem Statement
 
@@ -19,7 +19,7 @@ Develop an ML solution that analyzes product catalog content and images to predi
 
 - **Hybrid Architecture**: BiLSTM + Attention for text + ResNet embeddings for images
 - **Advanced Features**: SMAPE-optimized loss, log-transformed targets, robust scaling
-- **Performance**: Achieved strong validation SMAPE within 5 epochs
+- **Performance**: Achieved strong validation SMAPE within 50 epochs
 - **Innovation**: Multimodal fusion with attention-driven semantic understanding
 
 ### 📊 Dataset Description
@@ -50,7 +50,8 @@ Amazon-ML-Challenge-2025/
 ├── 📁 notebooks/                     # Analysis notebooks
 │   └── eda.ipynb                     # Exploratory Data Analysis
 ├── 📁 architecture/                  # Architecture diagrams
-│   └── architecture_overview.png     # Model architecture diagram
+│   ├── architecture_overview.png     # Model 
+│   └── Smart Pricing.pdf             # Hackathon model architecture documentation
 ├── 📁 images/                       # Downloaded images
 │   ├── train/                        # Training images
 │   └── test/                         # Test images
@@ -129,7 +130,7 @@ python model_training.py --inference
 
 ### Performance
 
-- **Validation SMAPE**: Competitive performance within 5 epochs
+- **Validation SMAPE**: Competitive performance within 50 epochs
 - **Convergence**: Early stopping with gradient clipping
 - **Generalization**: Strong regularization prevents overfitting
 
@@ -243,10 +244,10 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 **Batch_Normalisation**
 
-- Amulya Jain
-- Himanshu Pokhriyal
-- Narind Verma
-- Naman Chanana
+- [Amulya Jain](https://github.com/AmulyaJain2004)
+- [Himanshu Pokhriyal](https://github.com/hima-97435)
+- [Narind Verma](https://github.com/Narind1)
+- [Naman Chanana](https://github.com/Rishy-09)
 
 ---
 
